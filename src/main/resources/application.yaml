@@ -1,0 +1,21 @@
+spring:
+  application:
+    name: portfolio-api-development
+  datasource:
+    url: jdbc:mysql://localhost:3306/portfolio-api-development
+    username: root
+    password: "12345678"
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    properties:
+      hibernate:
+        id:
+          new_generator_mappings: false
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+    open-in-view: false
+logging:
+  level:
+    org.hibernate: warn
+
