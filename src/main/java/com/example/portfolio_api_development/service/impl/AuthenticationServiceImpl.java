@@ -7,6 +7,7 @@ import com.example.portfolio_api_development.mapper.UserMapper;
 import com.example.portfolio_api_development.model.dto.request.AuthenticationRequest;
 import com.example.portfolio_api_development.model.dto.request.RegisterRequest;
 import com.example.portfolio_api_development.model.dto.response.AuthenticationResponse;
+import com.example.portfolio_api_development.model.exception.AlreadyExistsException;
 import com.example.portfolio_api_development.service.AuthenticationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -24,12 +25,11 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     private final AuthenticationManager authenticationManager;
     @Override
     public void register(RegisterRequest request) {
+        if (userRepository.existsByEmail(request.getEmail())) {
+            throw new AlreadyExistsException("User with email " + request.getEmail() + " already exists.");
+        }
         User user = userMapper.toUser(request);
-        user.setFirstname(request.getFirstname());
-        user.setLastname(request.getLastname());
-        user.setEmail(request.getEmail());
         user.setPassword(passwordEncoder.encode(request.getPassword()));
-        user.setRole(request.getRole());
         userRepository.save(user);
 
     }
