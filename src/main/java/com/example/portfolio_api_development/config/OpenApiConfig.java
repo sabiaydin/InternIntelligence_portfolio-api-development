@@ -20,6 +20,7 @@ import io.swagger.v3.oas.annotations.security.SecurityScheme;
 Secure API for managing user portfolios with JWT authentication, including CRUD operations for projects, skills, experience, and education. Features role-based access control (RBAC) for admin and user roles, ensuring scalable and protected data management.
 """
                 ,
+                title = "Portfolio API development",
                 version = "1.0",
                 license = @License(
                         name = "Apache 2.0",
