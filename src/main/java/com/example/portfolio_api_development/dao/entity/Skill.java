@@ -9,7 +9,7 @@ import lombok.Data;
 public class Skill {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id;
+    private Long id;
     private String name;
     private String proficiencyLevel;
     @ManyToOne
